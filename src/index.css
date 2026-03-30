@@ -1,0 +1,96 @@
+:root {
+  --bg: #040405;
+  --ink: #fff9f8;
+  --muted: rgba(255, 241, 237, 0.72);
+  --serif-display: 'Bodoni MT', Didot, 'Times New Roman', serif;
+  --sans: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--sans);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ink);
+  background: #040405;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 62% 22%, rgba(255, 131, 188, 0.14), transparent 18%),
+    radial-gradient(circle at 18% 80%, rgba(222, 166, 255, 0.1), transparent 16%),
+    #040405;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.65) 0.7px, transparent 0.8px),
+    radial-gradient(rgba(255, 192, 213, 0.28) 0.6px, transparent 0.7px);
+  background-position: 0 0, 12px 12px;
+  background-size: 18px 18px, 24px 24px;
+}
+
+a,
+button {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif-display);
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(4.8rem, 12vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+p,
+li,
+a {
+  font-family: var(--sans);
+}
+
+p {
+  margin: 0;
+}
+
+::selection {
+  background: rgba(255, 124, 182, 0.24);
+}

@@ -169,7 +169,7 @@ const aboutSections = [
     title: 'Toward more ambitious interactive work.',
     text:
       'I want to keep building software that feels alive, especially work that blends strong frontend craft, interactivity, and thoughtful systems underneath. I am interested in projects that challenge both my technical skills and creative instincts.',
-    detail: 'My goal is not simply to ship more. It is to build work that is memorable, useful, and genuinely well crafted.',
+    detail: '',
     panels: [
       {
         label: 'Direction',
@@ -202,6 +202,11 @@ function ButterflySvg({ className = '' }) {
           <stop offset="68%" stopColor="#ff6faa" stopOpacity="0.94" />
           <stop offset="100%" stopColor="#ff8c5c" stopOpacity="0.94" />
         </linearGradient>
+        <radialGradient id="butterfly-body-glow" cx="50%" cy="34%" r="74%">
+          <stop offset="0%" stopColor="#fff8fb" stopOpacity="0.98" />
+          <stop offset="60%" stopColor="#ffd6e6" stopOpacity="0.72" />
+          <stop offset="100%" stopColor="#ff9bc8" stopOpacity="0.18" />
+        </radialGradient>
       </defs>
       <g className="butterfly-wing butterfly-wing-left">
         <path d="M105 88C74 25 28 22 19 54c-8 28 11 63 53 70 14 2 24-7 33-36Z" />
@@ -213,6 +218,7 @@ function ButterflySvg({ className = '' }) {
       </g>
       <g className="butterfly-body">
         <rect x="104" y="44" width="12" height="82" rx="6" />
+        <ellipse cx="110" cy="86" rx="18" ry="36" fill="url(#butterfly-body-glow)" opacity="0.72" />
         <path d="M110 44c0-13 9-22 20-28" />
         <path d="M110 44c0-13-9-22-20-28" />
       </g>
@@ -330,7 +336,7 @@ function App() {
       aboutTransitionRef.current = window.setTimeout(() => {
         setAboutTransition(null)
         aboutTransitionRef.current = null
-      }, 1200)
+      }, 2450)
 
       window.setTimeout(() => {
         aboutScrollRef.current?.scrollTo({ top: 0, behavior: 'auto' })
@@ -411,7 +417,13 @@ function App() {
           }}
         >
           <div className="butterfly-transition-backdrop" />
+          <div className="butterfly-transition-trail" />
           <div className="butterfly-transition-shell">
+            <div className="butterfly-transition-portal">
+              <span className="butterfly-transition-ring butterfly-transition-ring-one" />
+              <span className="butterfly-transition-ring butterfly-transition-ring-two" />
+              <span className="butterfly-transition-ring butterfly-transition-ring-three" />
+            </div>
             <div className="butterfly-echo butterfly-echo-one">
               <ButterflySvg className="butterfly-transition-svg butterfly-transition-svg-ghost" />
             </div>
@@ -537,28 +549,58 @@ function App() {
       <main key={page}>
         {page === 'home' ? (
           <section className="hero-panel">
+            <div className="hero-meta-row">
+              <p className="hero-search">software engineer portfolio</p>
+            </div>
+
+            <div className="hero-orbit hero-orbit-top" aria-hidden="true">
+              <span />
+              <span />
+            </div>
+
             <div className="hero-frame">
-              <p className="hero-topline">Software engineer portfolio</p>
-              <h1>
-                welcome to Amira's
-                <span>portfolio</span>
-              </h1>
-              <p className="hero-year">2026</p>
+              <div className="hero-side-note hero-side-note-left">
+                <span className="hero-line" />
+                <p>interactive systems</p>
+                <p>full-stack craft</p>
+              </div>
+
+              <div className="hero-title-stack">
+                <p className="hero-topline">2026 curriculum vitae</p>
+                <h1>
+                  PORT
+                  <span>FOLIO</span>
+                </h1>
+                <div className="hero-butterfly-wrap" aria-hidden="true">
+                  <div className="hero-butterfly-glow" />
+                  <ButterflySvg className="hero-butterfly" />
+                </div>
+              </div>
+
+              <div className="hero-side-note hero-side-note-right">
+                <p className="hero-side-year">2026</p>
+                <p className="hero-side-card">selected work / about / contact</p>
+              </div>
             </div>
 
             <div className="hero-footer">
               <div>
-                <p>Design</p>
-                <strong>Portfolio</strong>
+                <p>Name</p>
+                <strong>Amira Lina Benbouali</strong>
               </div>
               <div>
                 <p>Role</p>
-                <strong>Software Engineer</strong>
+                <strong>Software Engineer / Creative Developer</strong>
               </div>
               <div>
                 <p>Focus</p>
-                <strong>Frontend / Full-Stack</strong>
+                <strong>Interactive Web Applications</strong>
               </div>
+            </div>
+
+            <div className="hero-scroll-mark" aria-hidden="true">
+              <span className="hero-scroll-line" />
+              <span className="hero-scroll-dot" />
             </div>
           </section>
         ) : page === 'work' ? (
@@ -568,10 +610,16 @@ function App() {
                 <p className="section-label">Selected Work</p>
                 <h2>Resume and project highlights</h2>
               </div>
-              <p className="work-intro">
-                A tighter snapshot of the work themes I want this portfolio to
-                communicate: systems, delivery, and engineering quality.
-              </p>
+              <div className="work-intro-block">
+                <div className="work-butterfly-wrap" aria-hidden="true">
+                  <div className="work-butterfly-glow" />
+                  <ButterflySvg className="work-butterfly" />
+                </div>
+                <p className="work-intro">
+                  A tighter snapshot of the work themes I want this portfolio to
+                  communicate: systems, delivery, and engineering quality.
+                </p>
+              </div>
             </div>
 
             <div className="work-carousel">
@@ -668,9 +716,11 @@ function App() {
                       ))}
                     </div>
 
-                    <div className="about-story-detail">
-                      <p>{section.detail}</p>
-                    </div>
+                    {section.detail ? (
+                      <div className="about-story-detail">
+                        <p>{section.detail}</p>
+                      </div>
+                    ) : null}
                   </div>
                 </section>
               ))}
